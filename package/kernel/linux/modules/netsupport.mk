@@ -1462,11 +1462,11 @@ define KernelPackage/qrtr
   SUBMENU:=$(NETWORK_SUPPORT_MENU)
   TITLE:=Qualcomm IPC Router support
   HIDDEN:=1
-  DEPENDS:=@LINUX_5_15
+  DEPENDS:=@!LINUX_5_10
   KCONFIG:=CONFIG_QRTR
   FILES:= \
   $(LINUX_DIR)/net/qrtr/qrtr.ko \
-  $(LINUX_DIR)/net/qrtr/ns.ko
+  $(LINUX_DIR)/net/qrtr/ns.ko@lt5.16
   AUTOLOAD:=$(call AutoProbe,qrtr)
 endef
 
