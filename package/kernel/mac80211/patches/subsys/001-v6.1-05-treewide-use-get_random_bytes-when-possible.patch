@@ -1,0 +1,36 @@
+From 197173db990cad244221ba73c43b1df6170ae278 Mon Sep 17 00:00:00 2001
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Wed, 5 Oct 2022 17:49:46 +0200
+Subject: [PATCH 5/5] treewide: use get_random_bytes() when possible
+
+The prandom_bytes() function has been a deprecated inline wrapper around
+get_random_bytes() for several releases now, and compiles down to the
+exact same code. Replace the deprecated wrapper with a direct call to
+the real function. This was done as a basic find and replace.
+
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Kees Cook <keescook@chromium.org>
+Reviewed-by: Yury Norov <yury.norov@gmail.com>
+Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu> # powerpc
+Acked-by: Jakub Kicinski <kuba@kernel.org>
+Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+---
+ net/mac80211/rc80211_minstrel_ht.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/net/mac80211/rc80211_minstrel_ht.c b/net/mac80211/rc80211_minstrel_ht.c
+index 7f3f5f51081d..3d91b98db099 100644
+--- a/net/mac80211/rc80211_minstrel_ht.c
++++ b/net/mac80211/rc80211_minstrel_ht.c
+@@ -2036,7 +2036,7 @@ static void __init init_sample_table(void)
+ 
+ 	memset(sample_table, 0xff, sizeof(sample_table));
+ 	for (col = 0; col < SAMPLE_COLUMNS; col++) {
+-		prandom_bytes(rnd, sizeof(rnd));
++		get_random_bytes(rnd, sizeof(rnd));
+ 		for (i = 0; i < MCS_GROUP_RATES; i++) {
+ 			new_idx = (i + rnd[i]) % MCS_GROUP_RATES;
+ 			while (sample_table[col][new_idx] != 0xff)
+-- 
+2.37.2
+

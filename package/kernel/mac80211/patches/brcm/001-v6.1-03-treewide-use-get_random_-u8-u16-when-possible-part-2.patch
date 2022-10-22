@@ -1,0 +1,37 @@
+From f743f16c548b1a2633e8b6034058d6475d7f26a3 Mon Sep 17 00:00:00 2001
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Wed, 5 Oct 2022 17:23:53 +0200
+Subject: [PATCH 3/4] treewide: use get_random_{u8,u16}() when possible, part 2
+
+Rather than truncate a 32-bit value to a 16-bit value or an 8-bit value,
+simply use the get_random_{u8,u16}() functions, which are faster than
+wasting the additional bytes from a 32-bit value. This was done by hand,
+identifying all of the places where one of the random integer functions
+was used in a non-32-bit context.
+
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Kees Cook <keescook@chromium.org>
+Reviewed-by: Yury Norov <yury.norov@gmail.com>
+Acked-by: Jakub Kicinski <kuba@kernel.org>
+Acked-by: Heiko Carstens <hca@linux.ibm.com> # for s390
+Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+---
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/pno.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pno.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pno.c
+index d0a7465be586..170c61c8136c 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pno.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pno.c
+@@ -177,7 +177,7 @@ static int brcmf_pno_set_random(struct brcmf_if *ifp, struct brcmf_pno_info *pi)
+ 	memcpy(pfn_mac.mac, mac_addr, ETH_ALEN);
+ 	for (i = 0; i < ETH_ALEN; i++) {
+ 		pfn_mac.mac[i] &= mac_mask[i];
+-		pfn_mac.mac[i] |= get_random_int() & ~(mac_mask[i]);
++		pfn_mac.mac[i] |= get_random_u8() & ~(mac_mask[i]);
+ 	}
+ 	/* Clear multi bit */
+ 	pfn_mac.mac[0] &= 0xFE;
+-- 
+2.37.2
+

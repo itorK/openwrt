@@ -1,0 +1,47 @@
+From a251c17aa558d8e3128a528af5cf8b9d7caae4fd Mon Sep 17 00:00:00 2001
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Wed, 5 Oct 2022 17:43:22 +0200
+Subject: [PATCH 4/4] treewide: use get_random_u32() when possible
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The prandom_u32() function has been a deprecated inline wrapper around
+get_random_u32() for several releases now, and compiles down to the
+exact same code. Replace the deprecated wrapper with a direct call to
+the real function. The same also applies to get_random_int(), which is
+just a wrapper around get_random_u32(). This was done as a basic find
+and replace.
+
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Kees Cook <keescook@chromium.org>
+Reviewed-by: Yury Norov <yury.norov@gmail.com>
+Reviewed-by: Jan Kara <jack@suse.cz> # for ext4
+Acked-by: Toke Høiland-Jørgensen <toke@toke.dk> # for sch_cake
+Acked-by: Chuck Lever <chuck.lever@oracle.com> # for nfsd
+Acked-by: Jakub Kicinski <kuba@kernel.org>
+Acked-by: Mika Westerberg <mika.westerberg@linux.intel.com> # for thunderbolt
+Acked-by: Darrick J. Wong <djwong@kernel.org> # for xfs
+Acked-by: Helge Deller <deller@gmx.de> # for parisc
+Acked-by: Heiko Carstens <hca@linux.ibm.com> # for s390
+Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+---
+ drivers/net/wireless/ti/wlcore/main.c              | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/net/wireless/ti/wlcore/main.c b/drivers/net/wireless/ti/wlcore/main.c
+index 3e3922d4c788..28c0f06e311f 100644
+--- a/drivers/net/wireless/ti/wlcore/main.c
++++ b/drivers/net/wireless/ti/wlcore/main.c
+@@ -6100,7 +6100,7 @@ static int wl1271_register_hw(struct wl1271 *wl)
+ 			wl1271_warning("Fuse mac address is zero. using random mac");
+ 			/* Use TI oui and a random nic */
+ 			oui_addr = WLCORE_TI_OUI_ADDRESS;
+-			nic_addr = get_random_int();
++			nic_addr = get_random_u32();
+ 		} else {
+ 			oui_addr = wl->fuse_oui_addr;
+ 			/* fuse has the BD_ADDR, the WLAN addresses are the next two */
+-- 
+2.37.2
+
