@@ -33,6 +33,11 @@ platform_do_upgrade() {
 		rootfsname="rootfs"
 		mmc_do_upgrade "$1"
 		;;
+	zyxel,nbg7815)
+		kernelname="0:HLOS_1"
+		rootfsname="rootfs_1"
+		mmc_do_upgrade "$1"
+		;;
 	redmi,ax6|\
 	xiaomi,ax3600|\
 	xiaomi,ax9000)
