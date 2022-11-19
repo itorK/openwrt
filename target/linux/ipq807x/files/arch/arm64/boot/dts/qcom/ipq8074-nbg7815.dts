@@ -68,7 +68,6 @@
 		};
 	};
 
-	/* add 2nd i2c bus for temperature sensor CLK & DATA - needs patch for ipq8074.dtsi
 	i2c_1_pins: i2c_1_pinmux {
 		mux {
 			pins = "gpio50", "gpio51";
@@ -76,7 +75,7 @@
 			drive-strength = <8>;
 			bias-disable;
 		};
-	};*/
+	};
 
 };
 
