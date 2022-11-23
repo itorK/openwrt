@@ -79,6 +79,10 @@
 
 };
 
+&blsp1_uart3 {
+	status = "okay";
+};
+
 &blsp1_uart5 {
 	status = "okay";
 };
@@ -529,7 +533,6 @@
 	pinctrl-0 = <&i2c_0_pins>;
 	pinctrl-names = "default";
 	status = "okay";
-	/*lp5569 driver currently not in kernel, hence LED is not working 
 	lp5569@32 {
 		compatible = "ti,lp5569";
 		reg = <0x32>;
@@ -632,7 +635,7 @@
 			led-cur = /bits/ 8 <0xDF>;
 			max-cur = /bits/ 8 <0xFF>;
 		};
-	};*/
+	};
 
 	tmp103@70 {
 		compatible = "ti,tmp103";
