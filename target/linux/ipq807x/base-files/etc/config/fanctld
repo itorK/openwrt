@@ -3,5 +3,5 @@ config fanctld config
 	option Debug '0'
 	option Delay '20'
 	option Hits '3'
-	option TempTrig '73000'
-	option TempClr '68000'
+	option TempTrig '70000'
+	option TempClr '65000'

@@ -6,8 +6,8 @@
 enabled=0
 delay=10
 hit_level=5
-temp_trig=108
-temp_clr=85
+temp_trig=70000
+temp_clr=65000
 
 debug=0
 
@@ -22,8 +22,8 @@ load_config() {
 	config_get debug config 'Debug' '0'
 	config_get delay config 'Delay' '10'
 	config_get hit_level config 'Hit' '5'
-	config_get temp_trig config 'TempTrig' '108'
-	config_get temp_clr config 'TempClr' '85'
+	config_get temp_trig config 'TempTrig' '70000'
+	config_get temp_clr config 'TempClr' '65000'
 }
 
 nss_temp() {
@@ -42,7 +42,7 @@ wifi2_temp() {
 	cat /sys/class/hwmon/hwmon2/temp1_input
 }
 
-# this will off at now
+# off
 mdio_bus_temp() {
 	cat /sys/devices/platform/soc/90000.mdio/mdio_bus/90000.mdio-1/90000.mdio-1:08/hwmon/hwmon0/temp1_input
 }
@@ -60,7 +60,7 @@ check_temps() {
 	temp4=$(wifi2_temp)
 #      temp5=$(mdio_bus_temp)
 
-	dlog "nss_temp=$temp1 wifi0_temp=$temp2 wifi1_temp=$temp3 wifi2_temp=$temp4 mdio_bus_temp=$temp5"
+	dlog "nss_temp=$temp1 wifi0_temp=$temp2 wifi1_temp=$temp3 wifi2_temp=$temp4"
 
 	if [ $temp1 -ge $temp_trig -o $temp2 -ge $temp_trig -o $temp3 -ge $temp_trig -o $temp4 -ge $temp_trig ]; then
 		echo 2
