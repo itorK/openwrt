@@ -79,10 +79,6 @@
 
 };
 
-&blsp1_uart3 {
-	status = "okay";
-};
-
 &blsp1_uart5 {
 	status = "okay";
 };
