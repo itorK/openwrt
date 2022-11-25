@@ -1,4 +1,4 @@
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+/diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
 index ed800f5da..2b2688bd2 100644
 --- a/drivers/leds/Kconfig
 +++ b/drivers/leds/Kconfig
@@ -1408,7 +1408,7 @@ new file mode 100644
 +	struct lp55xx_chip *chip;
 +	struct lp55xx_led *led;
 +	struct lp55xx_platform_data *pdata = dev_get_platdata(&client->dev);
-+	struct device_node *np = client->dev.of_node;
++	struct device_node *np = dev_of_node(&client->dev);
 +
 +	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
 +	if (!chip)
