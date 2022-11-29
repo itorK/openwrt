@@ -1,0 +1,22 @@
+#!/bin/sh /etc/rc.common
+
+START=95
+
+USE_PROCD=1
+
+PROG=/usr/bin/ledctl
+
+start() {
+	/usr/bin/ledctl start
+}
+stop () {
+	/usr/bin/ledctl stop
+}
+
+start_service() {
+        procd_open_instance
+        procd_set_param command "$PROG" start
+        procd_set_param respawn
+        procd_close_instance
+
+}

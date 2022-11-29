@@ -51,7 +51,7 @@ index c636ec069..29db4806c 100644
  obj-$(CONFIG_LEDS_LP8788)		+= leds-lp8788.o
 diff --git a/drivers/leds/leds-lp5569.c b/drivers/leds/leds-lp5569.c 
 new file mode 100644
-@@ -0,0 +1,1462 @@
+@@ -0,0 +1,1461 @@
 +/*
 + * lp5569.c - LP5569LED Driver
 + *
@@ -87,6 +87,8 @@ new file mode 100644
 +#include <linux/slab.h>
 +
 +#include "leds-lp55xx-common.h"
++
++#define CONFIG_LEDS_LP5569_PREDEFINED_PATTERNS 1
 +
 +#if defined(CONFIG_LEDS_LP5569_EXTENDED_FW)
 +#define LP5569_PROGRAM_PAGES		16
@@ -428,9 +430,9 @@ new file mode 100644
 +};
 +#endif // CONFIG_LEDS_LP5569_PREDEFINED_PATTERNS
 +
-+#if 0
++
 +static int lp5569_init_program_engine(struct lp55xx_chip *chip);
-+#endif
++
 +static inline void lp5569_wait_opmode_done(void)
 +{
 +	usleep_range(1000, 2000);
@@ -472,7 +474,7 @@ new file mode 100644
 +	if (ret)
 +		return ret;
 +
-+#if 0
++
 +	/* turn on all leds */
 +	ret = lp55xx_write(chip, LP5569_REG_ENABLE_LEDS_MSB, 0x01);
 +	if (ret)
@@ -482,9 +484,6 @@ new file mode 100644
 +	if (ret)
 +		return ret;
 +	return lp5569_init_program_engine(chip);
-+#else
-+	return 0;
-+#endif
 +}
 +
 +static void lp5569_load_engine(struct lp55xx_chip *chip)
@@ -627,7 +626,7 @@ new file mode 100644
 +
 +	lp55xx_update_bits(chip, LP5569_REG_EXEC_CTRL, LP5569_EXEC_M, exec);
 +}
-+#if 0
++
 +static int lp5569_init_program_engine(struct lp55xx_chip *chip)
 +{
 +	int i;
@@ -685,7 +684,7 @@ new file mode 100644
 +	lp5569_stop_all_engines(chip);
 +	return ret;
 +}
-+#endif
++
 +static int lp5569_update_program_memory(struct lp55xx_chip *chip,
 +					const u8 *data, size_t size)
 +{
