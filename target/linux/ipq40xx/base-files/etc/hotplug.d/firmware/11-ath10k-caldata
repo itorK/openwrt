@@ -34,10 +34,6 @@ case "$FIRMWARE" in
 		/usr/bin/fritz_cal_extract -i 1 -s 0x3C800 -e 0x212 -l 12064 -o /lib/firmware/$FIRMWARE $(find_mtd_chardev "urlader1") || \
 		/usr/bin/fritz_cal_extract -i 1 -s 0x3C000 -e 0x212 -l 12064 -o /lib/firmware/$FIRMWARE $(find_mtd_chardev "urlader1")
 		;;
-	openmesh,a62 |\
-	plasmacloud,pa2200)
-		caldata_extract "0:ART" 0x9000 0x2f20
-		;;
 	linksys,ea8300 |\
 	linksys,mr8300)
 		caldata_extract "ART" 0x9000 0x2f20
@@ -76,11 +72,7 @@ case "$FIRMWARE" in
 		/usr/bin/fritz_cal_extract -i 1 -s 0x3C800 -e 0x207 -l 12064 -o /lib/firmware/$FIRMWARE $(find_mtd_chardev "urlader1") || \
 		/usr/bin/fritz_cal_extract -i 1 -s 0x3D000 -e 0x207 -l 12064 -o /lib/firmware/$FIRMWARE $(find_mtd_chardev "urlader1")
 		;;
-	cellc,rtl30vw |\
-	openmesh,a42 |\
-	openmesh,a62 |\
-	plasmacloud,pa1200 |\
-	plasmacloud,pa2200)
+	cellc,rtl30vw)
 		caldata_extract "0:ART" 0x1000 0x2f20
 		;;
 	devolo,magic-2-wifi-next)
@@ -121,7 +113,9 @@ case "$FIRMWARE" in
 	mikrotik,hap-ac2 |\
 	mikrotik,hap-ac3 |\
 	mikrotik,hap-ac3-lte6-kit |\
-	mikrotik,wap-ac)
+	mikrotik,wap-ac |\
+	mikrotik,wap-ac-lte |\
+	mikrotik,wap-r-ac)
 		wlan_data="/sys/firmware/mikrotik/hard_config/wlan_data"
 		( [ -f "$wlan_data" ] && caldata_sysfsload_from_file "$wlan_data" 0x0 0x2f20 ) || \
 		( [ -d "$wlan_data" ] && caldata_sysfsload_from_file "$wlan_data/data_0" 0x0 0x2f20 )
@@ -173,11 +167,7 @@ case "$FIRMWARE" in
 		/usr/bin/fritz_cal_extract -i 1 -s 0x3D000 -e 0x208 -l 12064 -o /lib/firmware/$FIRMWARE $(find_mtd_chardev "urlader1") || \
 		/usr/bin/fritz_cal_extract -i 1 -s 0x3C000 -e 0x208 -l 12064 -o /lib/firmware/$FIRMWARE $(find_mtd_chardev "urlader1")
 		;;
-	cellc,rtl30vw |\
-	openmesh,a42 |\
-	openmesh,a62 |\
-	plasmacloud,pa1200 |\
-	plasmacloud,pa2200)
+	cellc,rtl30vw)
 		caldata_extract "0:ART" 0x5000 0x2f20
 		;;
 	devolo,magic-2-wifi-next)
@@ -219,7 +209,9 @@ case "$FIRMWARE" in
 	mikrotik,hap-ac3 |\
 	mikrotik,hap-ac3-lte6-kit |\
 	mikrotik,sxtsq-5-ac |\
-	mikrotik,wap-ac)
+	mikrotik,wap-ac |\
+	mikrotik,wap-ac-lte |\
+	mikrotik,wap-r-ac)
 		wlan_data="/sys/firmware/mikrotik/hard_config/wlan_data"
 		( [ -f "$wlan_data" ] && caldata_sysfsload_from_file "$wlan_data" 0x8000 0x2f20 ) || \
 		( [ -d "$wlan_data" ] && caldata_sysfsload_from_file "$wlan_data/data_2" 0x0 0x2f20 )
@@ -255,7 +247,9 @@ case "$FIRMWARE" in
 	mikrotik,hap-ac2 |\
 	mikrotik,hap-ac3 |\
 	mikrotik,hap-ac3-lte6-kit |\
-	mikrotik,wap-ac)
+	mikrotik,wap-ac |\
+	mikrotik,wap-ac-lte |\
+	mikrotik,wap-r-ac)
 		wlan_data="/sys/firmware/mikrotik/hard_config/wlan_data"
 		( [ -f "$wlan_data" ] && caldata_sysfsload_from_file "$wlan_data" 0x2f20 0x2f20 ) || \
 		( [ -d "$wlan_data" ] && caldata_sysfsload_from_file "$wlan_data/data_0" 0x2f20 0x2f20 )
@@ -269,7 +263,9 @@ case "$FIRMWARE" in
 	mikrotik,hap-ac3 |\
         mikrotik,hap-ac3-lte6-kit |\
 	mikrotik,sxtsq-5-ac |\
-	mikrotik,wap-ac)
+	mikrotik,wap-ac |\
+	mikrotik,wap-ac-lte |\
+	mikrotik,wap-r-ac)
 		wlan_data="/sys/firmware/mikrotik/hard_config/wlan_data"
 		( [ -f "$wlan_data" ] && caldata_sysfsload_from_file "$wlan_data" 0xaf20 0x2f20 ) || \
 		( [ -d "$wlan_data" ] && caldata_sysfsload_from_file "$wlan_data/data_2" 0x2f20 0x2f20 )

@@ -204,8 +204,12 @@ ismounted() {
 	return 1
 }
 
-append_addnhosts() {
+append_extramount() {
 	ismounted "$1" || append EXTRA_MOUNT "$1"
+}
+
+append_addnhosts() {
+	append_extramount "$1"
 	xappend "--addn-hosts=$1"
 }
 
@@ -960,6 +964,9 @@ dnsmasq_start()
 	append_bool "$cfg" rapidcommit "--dhcp-rapid-commit"
 	append_bool "$cfg" scriptarp "--script-arp"
 
+	append_bool "$cfg" filter_aaaa "--filter-AAAA"
+	append_bool "$cfg" filter_a "--filter-A"
+
 	append_parm "$cfg" logfacility "--log-facility"
 	config_get logfacility "$cfg" "logfacility"
 	append_parm "$cfg" cachesize "--cache-size"
@@ -1182,6 +1189,8 @@ dnsmasq_start()
 			echo "nameserver $DNS_SERVER" >> /tmp/resolv.conf
 		done
 	}
+
+	config_list_foreach "$cfg" addnmount append_extramount
 
 	procd_open_instance $cfg
 	procd_set_param command $PROG -C $CONFIGFILE -k -x /var/run/dnsmasq/dnsmasq."${cfg}".pid
