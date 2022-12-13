@@ -37,7 +37,7 @@
 		reset {
 			label = "reset_to_default";
 			linux,code = <KEY_RESTART>;
-			gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
+			gpios = <&tlmm 54 GPIO_ACTIVE_LOW &tlmm 20 GPIO_ACTIVE_LOW>;
 			linux,input-type = <1>;
 			debounce-interval = <60>;
 		};
@@ -45,6 +45,26 @@
 };
 
 &tlmm {
+	btcoex_pins: btcoex_pins {
+		mux_0 {
+			pins = "gpio64";
+			function = "pta1_1";
+			drive-strength = <6>;
+			bias-pull-down;
+		};
+		mux_1 {
+			pins = "gpio65";
+			function = "pta1_2";
+			drive-strength = <6>;
+			bias-pull-down;
+		};
+		mux_2 {
+			pins = "gpio66";
+			function = "pta1_0";
+			drive-strength = <6>;
+			bias-pull-down;
+		};
+  };
 	mdio_pins: mdio-pins {
 		mdc {
 			pins = "gpio68";
@@ -60,24 +80,37 @@
 			bias-pull-up;
 		};
 	};
-	uart_pins: uart_pins {
-		mux {
-			pins = "gpio23", "gpio24";
-			function = "blsp4_uart1";
-			drive-strength = <8>;
-			bias-disable;
-		};
-	};
 
 	i2c_1_pins: i2c_1_pinmux {
-		mux {
 			pins = "gpio50", "gpio51";
 			function = "blsp3_i2c";
 			drive-strength = <8>;
 			bias-disable;
-		};
 	};
+  button_pins {
+    wps_button {
+      pins = "gpio54";
+      function = "gpio";
+      drive-strength = <8>;
+      bias-pull-up;
+    };
+  };
+  gpio_pinmux {
+    mux_1 {
+      pins = "gpio21", "gpio22", "gpio32", "gpio31", "gpio37", "gpio60";
+      function = "gpio";
+      drive-strength = <2>;
+      output-high;
+      bias-disable;
+    };
 
+    mux_2 {
+      pins = "gpio25", "gpio26", "gpio44", "gpio54", "gpio59";
+      function = "gpio";
+      input-enable;
+      bias-disable;
+    };
+  };
 };
 
 &blsp1_uart5 {
@@ -737,6 +770,14 @@
 };
 
 &qusb_phy_1 {
+  status = "okay";
+};
+
+&usb_0 {
+	status = "okay";
+};
+
+&usb_1 {
 	status = "okay";
 };
 
