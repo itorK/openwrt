@@ -1,0 +1,113 @@
+#!/bin/sh
+# Maintainer: Karol Przybylski <itor@o2.pl>
+
+. /lib/functions.sh
+
+enabled=0
+delay=10
+hit_level=5
+temp_trig=70000
+temp_clr=65000
+
+debug=0
+
+dlog() {
+	[ $debug = '1' ] && echo "$@" >> /tmp/fanctld.log
+}
+
+load_config() {
+	config_load fanctld
+
+	config_get enabled config 'Enabled' '0'
+	config_get debug config 'Debug' '0'
+	config_get delay config 'Delay' '10'
+	config_get hit_level config 'Hit' '5'
+	config_get temp_trig config 'TempTrig' '70000'
+	config_get temp_clr config 'TempClr' '65000'
+}
+
+nss_temp() {
+	cat /sys/class/thermal/thermal_zone0/temp
+}
+
+wifi0_temp() {
+      cat /sys/class/hwmon/hwmon0/temp1_input
+}
+
+wifi1_temp() {
+	cat /sys/class/hwmon/hwmon1/temp1_input
+}
+
+wifi2_temp() {
+	cat /sys/class/hwmon/hwmon2/temp1_input
+}
+
+# off
+mdio_bus_temp() {
+	cat /sys/devices/platform/soc/90000.mdio/mdio_bus/90000.mdio-1/90000.mdio-1:08/hwmon/hwmon0/temp1_input
+}
+
+check_temps() {
+	local temp1
+	local temp2
+	local temp3
+	local temp4
+	local temp5
+
+	temp1=$(nss_temp)
+	temp2=$(wifi0_temp)
+	temp3=$(wifi1_temp)
+	temp4=$(wifi2_temp)
+#      temp5=$(mdio_bus_temp)
+
+	dlog "nss_temp=$temp1 wifi0_temp=$temp2 wifi1_temp=$temp3 wifi2_temp=$temp4"
+
+	if [ $temp1 -ge $temp_trig -o $temp2 -ge $temp_trig -o $temp3 -ge $temp_trig -o $temp4 -ge $temp_trig ]; then
+		echo 2
+	elif [ $temp1 -le $temp_clr -a $temp2 -le $temp_clr -a $temp3 -le $temp_clr -a $temp4 -le $temp_clr ]; then
+		echo 1
+	else
+		echo 0
+	fi
+}
+
+fan_status() {
+	fanctl status
+}
+
+load_config
+
+dlog "----- fanctld debug log -----"
+dlog "enabled=$enabled, delay=$delay, hit_level=$hit_level, temp_trig=$temp_trig, temp_clr=$temp_clr, debug=$debug"
+
+trig_hits=0
+clr_hits=0
+> /tmp/fanctld.log
+while true; do
+	sleep $delay
+
+	result=$(check_temps)
+
+	if [ $result = '2' ]; then
+		trig_hits=$((trig_hits+1))
+	elif [ $result = '1' ]; then
+		clr_hits=$((clr_hits+1))
+	else
+		trig_hits=0
+		clr_hits=0
+	fi
+
+	if [ $trig_hits -ge $hit_level ]; then
+		trig_hits=0
+		if [ $(fan_status) = 'disable' ]; then
+			fanctl start
+			dlog "Reach tigger temperature $temp_trig, start fan"
+		fi
+	elif [ $clr_hits -ge $hit_level ]; then
+		clr_hits=0
+		if [ $(fan_status) = 'enable' ]; then
+			fanctl stop
+			dlog "Reach clear temperature $temp_clr, stop fan"
+		fi
+	fi
+done 

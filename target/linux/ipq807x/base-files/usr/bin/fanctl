@@ -1,0 +1,52 @@
+#!/bin/sh
+# Maintainer: Karol Przybylski <itor@o2.pl>
+
+FAN_GPIO=463
+
+usage() {
+  echo "usage: $0 [start|stop|status]"
+}
+
+fan_init() {
+  if [ ! -d /sys/class/gpio/gpio${FAN_GPIO} ]; then
+    echo $FAN_GPIO > /sys/class/gpio/export
+    echo out > /sys/class/gpio/gpio${FAN_GPIO}/direction
+  fi
+}
+
+fan_start() {
+  fan_init
+  echo 1 > /sys/class/gpio/gpio${FAN_GPIO}/value
+}
+
+fan_stop() {
+  fan_init
+  echo 0 > /sys/class/gpio/gpio${FAN_GPIO}/value
+}
+
+fan_status() {
+  fan_init
+  status=`cat /sys/class/gpio/gpio${FAN_GPIO}/value`
+  if [ $status = 0 ]; then
+	  echo "disable"
+  else
+	  echo "enable"
+  fi
+}
+
+case $1 in
+  start)
+    fan_start
+    ;;
+  stop)
+    fan_stop
+    ;;
+  status)
+    fan_status
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+exit 0
