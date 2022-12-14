@@ -29,11 +29,9 @@ Link: https://lore.kernel.org/r/20221031114341.10377-1-jirislaby@kernel.org
  drivers/net/wireless/ath/ath11k/mac.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 2a0d3afb0c99..0231783ad754 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.h
 +++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -163,7 +163,7 @@ void ath11k_mac_drain_tx(struct ath11k *ar);
+@@ -163,7 +163,7 @@ void ath11k_mac_drain_tx(struct ath11k *
  void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
  int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
  u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
@@ -42,6 +40,3 @@ index 2a0d3afb0c99..0231783ad754 100644
  enum nl80211_he_ru_alloc ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(u16 ru_phy);
  enum nl80211_he_ru_alloc ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones);
  enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw bw);
--- 
-2.38.1
-

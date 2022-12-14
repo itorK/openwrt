@@ -29,11 +29,9 @@ Link: https://lore.kernel.org/r/20221007051130.6067-1-quic_mpubbise@quicinc.com
  drivers/net/wireless/ath/ath11k/mac.c | 33 +++++++++++++++++++++++----
  1 file changed, 29 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index b37803d6c93f..ce15693c1804 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -241,7 +241,10 @@ const struct htt_rx_ring_tlv_filter ath11k_mac_mon_status_filter_default = {
+@@ -241,7 +241,10 @@ const struct htt_rx_ring_tlv_filter ath1
  #define ath11k_a_rates (ath11k_legacy_rates + 4)
  #define ath11k_a_rates_size (ARRAY_SIZE(ath11k_legacy_rates) - 4)
  
@@ -45,7 +43,7 @@ index b37803d6c93f..ce15693c1804 100644
  
  static const u32 ath11k_smps_map[] = {
  	[WLAN_HT_CAP_SM_PS_STATIC] = WMI_PEER_SMPS_STATIC,
-@@ -3611,6 +3614,7 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
+@@ -3612,6 +3615,7 @@ static int ath11k_mac_op_hw_scan(struct
  	struct scan_req_params arg;
  	int ret = 0;
  	int i;
@@ -53,7 +51,7 @@ index b37803d6c93f..ce15693c1804 100644
  
  	mutex_lock(&ar->conf_mutex);
  
-@@ -3680,6 +3684,26 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
+@@ -3681,6 +3685,26 @@ static int ath11k_mac_op_hw_scan(struct
  		ether_addr_copy(arg.mac_mask.addr, req->mac_addr_mask);
  	}
  
@@ -80,7 +78,7 @@ index b37803d6c93f..ce15693c1804 100644
  	ret = ath11k_start_scan(ar, &arg);
  	if (ret) {
  		ath11k_warn(ar->ab, "failed to start hw scan: %d\n", ret);
-@@ -3688,10 +3712,8 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
+@@ -3689,10 +3713,8 @@ static int ath11k_mac_op_hw_scan(struct
  		spin_unlock_bh(&ar->data_lock);
  	}
  
@@ -92,7 +90,7 @@ index b37803d6c93f..ce15693c1804 100644
  
  exit:
  	kfree(arg.chan_list);
-@@ -9058,6 +9080,9 @@ static int __ath11k_mac_register(struct ath11k *ar)
+@@ -9060,6 +9082,9 @@ static int __ath11k_mac_register(struct
  				      NL80211_EXT_FEATURE_UNSOL_BCAST_PROBE_RESP);
  	}
  
@@ -102,6 +100,3 @@ index b37803d6c93f..ce15693c1804 100644
  	ath11k_reg_init(ar);
  
  	if (!test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags)) {
--- 
-2.37.3
-

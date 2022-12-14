@@ -16,11 +16,9 @@ Link: https://lore.kernel.org/r/20220915002303.12206-1-quic_jjohnson@quicinc.com
  drivers/net/wireless/ath/ath11k/qmi.c | 72 +++++++++++++--------------
  1 file changed, 36 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 72cfc13ef6a8..ab923e24b0a9 100644
 --- a/drivers/net/wireless/ath/ath11k/qmi.c
 +++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -29,7 +29,7 @@ module_param_named(cold_boot_cal, ath11k_cold_boot_cal, bool, 0644);
+@@ -29,7 +29,7 @@ module_param_named(cold_boot_cal, ath11k
  MODULE_PARM_DESC(cold_boot_cal,
  		 "Decrease the channel switch time but increase the driver load time (Default: true)");
  
@@ -29,7 +27,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_OPT_FLAG,
  		.elem_len	= 1,
-@@ -280,7 +280,7 @@ static struct qmi_elem_info qmi_wlanfw_host_cap_req_msg_v01_ei[] = {
+@@ -280,7 +280,7 @@ static struct qmi_elem_info qmi_wlanfw_h
  	},
  };
  
@@ -38,7 +36,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -297,7 +297,7 @@ static struct qmi_elem_info qmi_wlanfw_host_cap_resp_msg_v01_ei[] = {
+@@ -297,7 +297,7 @@ static struct qmi_elem_info qmi_wlanfw_h
  	},
  };
  
@@ -47,7 +45,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_OPT_FLAG,
  		.elem_len	= 1,
-@@ -522,7 +522,7 @@ static struct qmi_elem_info qmi_wlanfw_ind_register_req_msg_v01_ei[] = {
+@@ -522,7 +522,7 @@ static struct qmi_elem_info qmi_wlanfw_i
  	},
  };
  
@@ -56,7 +54,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -558,7 +558,7 @@ static struct qmi_elem_info qmi_wlanfw_ind_register_resp_msg_v01_ei[] = {
+@@ -558,7 +558,7 @@ static struct qmi_elem_info qmi_wlanfw_i
  	},
  };
  
@@ -65,7 +63,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_8_BYTE,
  		.elem_len	= 1,
-@@ -590,7 +590,7 @@ static struct qmi_elem_info qmi_wlanfw_mem_cfg_s_v01_ei[] = {
+@@ -590,7 +590,7 @@ static struct qmi_elem_info qmi_wlanfw_m
  	},
  };
  
@@ -74,7 +72,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -632,7 +632,7 @@ static struct qmi_elem_info qmi_wlanfw_mem_seg_s_v01_ei[] = {
+@@ -632,7 +632,7 @@ static struct qmi_elem_info qmi_wlanfw_m
  	},
  };
  
@@ -83,7 +81,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_DATA_LEN,
  		.elem_len	= 1,
-@@ -659,7 +659,7 @@ static struct qmi_elem_info qmi_wlanfw_request_mem_ind_msg_v01_ei[] = {
+@@ -659,7 +659,7 @@ static struct qmi_elem_info qmi_wlanfw_r
  	},
  };
  
@@ -92,7 +90,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_8_BYTE,
  		.elem_len	= 1,
-@@ -699,7 +699,7 @@ static struct qmi_elem_info qmi_wlanfw_mem_seg_resp_s_v01_ei[] = {
+@@ -699,7 +699,7 @@ static struct qmi_elem_info qmi_wlanfw_m
  	},
  };
  
@@ -101,7 +99,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_DATA_LEN,
  		.elem_len	= 1,
-@@ -726,7 +726,7 @@ static struct qmi_elem_info qmi_wlanfw_respond_mem_req_msg_v01_ei[] = {
+@@ -726,7 +726,7 @@ static struct qmi_elem_info qmi_wlanfw_r
  	},
  };
  
@@ -110,7 +108,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -744,7 +744,7 @@ static struct qmi_elem_info qmi_wlanfw_respond_mem_resp_msg_v01_ei[] = {
+@@ -744,7 +744,7 @@ static struct qmi_elem_info qmi_wlanfw_r
  	},
  };
  
@@ -119,7 +117,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_EOTI,
  		.array_type	= NO_ARRAY,
-@@ -752,7 +752,7 @@ static struct qmi_elem_info qmi_wlanfw_cap_req_msg_v01_ei[] = {
+@@ -752,7 +752,7 @@ static struct qmi_elem_info qmi_wlanfw_c
  	},
  };
  
@@ -128,7 +126,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type      = QMI_EOTI,
  		.array_type     = NO_ARRAY,
-@@ -760,7 +760,7 @@ static struct qmi_elem_info qmi_wlanfw_device_info_req_msg_v01_ei[] = {
+@@ -760,7 +760,7 @@ static struct qmi_elem_info qmi_wlanfw_d
  	},
  };
  
@@ -137,7 +135,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -814,7 +814,7 @@ static struct qmi_elem_info qmi_wlfw_device_info_resp_msg_v01_ei[] = {
+@@ -814,7 +814,7 @@ static struct qmi_elem_info qmi_wlfw_dev
  	},
  };
  
@@ -146,7 +144,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -840,7 +840,7 @@ static struct qmi_elem_info qmi_wlanfw_rf_chip_info_s_v01_ei[] = {
+@@ -840,7 +840,7 @@ static struct qmi_elem_info qmi_wlanfw_r
  	},
  };
  
@@ -155,7 +153,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -857,7 +857,7 @@ static struct qmi_elem_info qmi_wlanfw_rf_board_info_s_v01_ei[] = {
+@@ -857,7 +857,7 @@ static struct qmi_elem_info qmi_wlanfw_r
  	},
  };
  
@@ -164,7 +162,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -873,7 +873,7 @@ static struct qmi_elem_info qmi_wlanfw_soc_info_s_v01_ei[] = {
+@@ -873,7 +873,7 @@ static struct qmi_elem_info qmi_wlanfw_s
  	},
  };
  
@@ -173,7 +171,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -899,7 +899,7 @@ static struct qmi_elem_info qmi_wlanfw_fw_version_info_s_v01_ei[] = {
+@@ -899,7 +899,7 @@ static struct qmi_elem_info qmi_wlanfw_f
  	},
  };
  
@@ -182,7 +180,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -1100,7 +1100,7 @@ static struct qmi_elem_info qmi_wlanfw_cap_resp_msg_v01_ei[] = {
+@@ -1100,7 +1100,7 @@ static struct qmi_elem_info qmi_wlanfw_c
  	},
  };
  
@@ -191,7 +189,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_1_BYTE,
  		.elem_len	= 1,
-@@ -1235,7 +1235,7 @@ static struct qmi_elem_info qmi_wlanfw_bdf_download_req_msg_v01_ei[] = {
+@@ -1235,7 +1235,7 @@ static struct qmi_elem_info qmi_wlanfw_b
  	},
  };
  
@@ -200,7 +198,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -1253,7 +1253,7 @@ static struct qmi_elem_info qmi_wlanfw_bdf_download_resp_msg_v01_ei[] = {
+@@ -1253,7 +1253,7 @@ static struct qmi_elem_info qmi_wlanfw_b
  	},
  };
  
@@ -209,7 +207,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_8_BYTE,
  		.elem_len	= 1,
-@@ -1277,7 +1277,7 @@ static struct qmi_elem_info qmi_wlanfw_m3_info_req_msg_v01_ei[] = {
+@@ -1277,7 +1277,7 @@ static struct qmi_elem_info qmi_wlanfw_m
  	},
  };
  
@@ -218,7 +216,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -1294,7 +1294,7 @@ static struct qmi_elem_info qmi_wlanfw_m3_info_resp_msg_v01_ei[] = {
+@@ -1294,7 +1294,7 @@ static struct qmi_elem_info qmi_wlanfw_m
  	},
  };
  
@@ -227,7 +225,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -1347,7 +1347,7 @@ static struct qmi_elem_info qmi_wlanfw_ce_tgt_pipe_cfg_s_v01_ei[] = {
+@@ -1347,7 +1347,7 @@ static struct qmi_elem_info qmi_wlanfw_c
  	},
  };
  
@@ -236,7 +234,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -1382,7 +1382,7 @@ static struct qmi_elem_info qmi_wlanfw_ce_svc_pipe_cfg_s_v01_ei[] = {
+@@ -1382,7 +1382,7 @@ static struct qmi_elem_info qmi_wlanfw_c
  	},
  };
  
@@ -245,7 +243,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_2_BYTE,
  		.elem_len	= 1,
-@@ -1406,7 +1406,7 @@ static struct qmi_elem_info qmi_wlanfw_shadow_reg_cfg_s_v01_ei[] = {
+@@ -1406,7 +1406,7 @@ static struct qmi_elem_info qmi_wlanfw_s
  	},
  };
  
@@ -254,7 +252,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -1423,7 +1423,7 @@ static struct qmi_elem_info qmi_wlanfw_shadow_reg_v2_cfg_s_v01_ei[] = {
+@@ -1423,7 +1423,7 @@ static struct qmi_elem_info qmi_wlanfw_s
  	},
  };
  
@@ -263,7 +261,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_UNSIGNED_4_BYTE,
  		.elem_len	= 1,
-@@ -1458,7 +1458,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_mode_req_msg_v01_ei[] = {
+@@ -1458,7 +1458,7 @@ static struct qmi_elem_info qmi_wlanfw_w
  	},
  };
  
@@ -272,7 +270,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -1476,7 +1476,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_mode_resp_msg_v01_ei[] = {
+@@ -1476,7 +1476,7 @@ static struct qmi_elem_info qmi_wlanfw_w
  	},
  };
  
@@ -281,7 +279,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_OPT_FLAG,
  		.elem_len	= 1,
-@@ -1615,7 +1615,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_cfg_req_msg_v01_ei[] = {
+@@ -1615,7 +1615,7 @@ static struct qmi_elem_info qmi_wlanfw_w
  	},
  };
  
@@ -290,7 +288,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -1632,28 +1632,28 @@ static struct qmi_elem_info qmi_wlanfw_wlan_cfg_resp_msg_v01_ei[] = {
+@@ -1632,28 +1632,28 @@ static struct qmi_elem_info qmi_wlanfw_w
  	},
  };
  
@@ -323,7 +321,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_OPT_FLAG,
  		.elem_len	= 1,
-@@ -1679,7 +1679,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_ini_req_msg_v01_ei[] = {
+@@ -1679,7 +1679,7 @@ static struct qmi_elem_info qmi_wlanfw_w
  	},
  };
  
@@ -332,7 +330,7 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type	= QMI_STRUCT,
  		.elem_len	= 1,
-@@ -1697,7 +1697,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_ini_resp_msg_v01_ei[] = {
+@@ -1697,7 +1697,7 @@ static struct qmi_elem_info qmi_wlanfw_w
  	},
  };
  
@@ -341,6 +339,3 @@ index 72cfc13ef6a8..ab923e24b0a9 100644
  	{
  		.data_type = QMI_EOTI,
  		.array_type = NO_ARRAY,
--- 
-2.38.1
-

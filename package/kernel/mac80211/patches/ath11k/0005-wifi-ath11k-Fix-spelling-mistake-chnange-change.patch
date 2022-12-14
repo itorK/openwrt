@@ -12,11 +12,9 @@ Link: https://lore.kernel.org/r/20220928143834.35189-1-colin.i.king@gmail.com
  drivers/net/wireless/ath/ath11k/wmi.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index fad9f8d308a2..2a8a3e3dcff6 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -6829,7 +6829,7 @@ static void ath11k_wmi_event_peer_sta_ps_state_chg(struct ath11k_base *ab,
+@@ -6829,7 +6829,7 @@ static void ath11k_wmi_event_peer_sta_ps
  	}
  
  	ath11k_dbg(ab, ATH11K_DBG_WMI,
@@ -25,6 +23,3 @@ index fad9f8d308a2..2a8a3e3dcff6 100644
  		   ev->peer_macaddr.addr, ev->peer_ps_state,
  		   ev->ps_supported_bitmap, ev->peer_ps_valid,
  		   ev->peer_ps_timestamp);
--- 
-2.37.3
-

@@ -12,11 +12,9 @@ Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
  drivers/clk/qcom/gcc-ipq8074.c | 64 +++++++++++++++++++++++++---------
  1 file changed, 48 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/clk/qcom/gcc-ipq8074.c b/drivers/clk/qcom/gcc-ipq8074.c
-index 42d185fe19c8..02d04a552b78 100644
 --- a/drivers/clk/qcom/gcc-ipq8074.c
 +++ b/drivers/clk/qcom/gcc-ipq8074.c
-@@ -1787,13 +1787,21 @@ static struct clk_regmap_div nss_port4_tx_div_clk_src = {
+@@ -1787,13 +1787,21 @@ static struct clk_regmap_div nss_port4_t
  	},
  };
  
@@ -42,7 +40,7 @@ index 42d185fe19c8..02d04a552b78 100644
  	F(156250000, P_UNIPHY1_RX, 2, 0, 0),
  	F(312500000, P_UNIPHY1_RX, 1, 0, 0),
  	{ }
-@@ -1829,13 +1837,21 @@ static struct clk_regmap_div nss_port5_rx_div_clk_src = {
+@@ -1829,13 +1837,21 @@ static struct clk_regmap_div nss_port5_r
  	},
  };
  
@@ -68,7 +66,7 @@ index 42d185fe19c8..02d04a552b78 100644
  	F(156250000, P_UNIPHY1_TX, 2, 0, 0),
  	F(312500000, P_UNIPHY1_TX, 1, 0, 0),
  	{ }
-@@ -1871,13 +1887,21 @@ static struct clk_regmap_div nss_port5_tx_div_clk_src = {
+@@ -1871,13 +1887,21 @@ static struct clk_regmap_div nss_port5_t
  	},
  };
  
@@ -94,7 +92,7 @@ index 42d185fe19c8..02d04a552b78 100644
  	F(156250000, P_UNIPHY2_RX, 2, 0, 0),
  	F(312500000, P_UNIPHY2_RX, 1, 0, 0),
  	{ }
-@@ -1913,13 +1937,21 @@ static struct clk_regmap_div nss_port6_rx_div_clk_src = {
+@@ -1913,13 +1937,21 @@ static struct clk_regmap_div nss_port6_r
  	},
  };
  
@@ -120,6 +118,3 @@ index 42d185fe19c8..02d04a552b78 100644
  	F(156250000, P_UNIPHY2_TX, 2, 0, 0),
  	F(312500000, P_UNIPHY2_TX, 1, 0, 0),
  	{ }
--- 
-2.37.2
-

@@ -34,11 +34,9 @@ Link: https://lore.kernel.org/r/20221104085403.11025-1-quic_youghand@quicinc.com
  drivers/net/wireless/ath/ath11k/mac.c  | 7 +++++++
  3 files changed, 14 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 0ab2f190f1ec..edf78df9b12f 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -195,6 +195,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+@@ -195,6 +195,7 @@ static const struct ath11k_hw_params ath
  		.tcl_ring_retry = true,
  		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
  		.smp2p_wow_exit = false,
@@ -46,7 +44,7 @@ index 0ab2f190f1ec..edf78df9b12f 100644
  	},
  	{
  		.name = "qca6390 hw2.0",
-@@ -277,6 +278,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+@@ -277,6 +278,7 @@ static const struct ath11k_hw_params ath
  		.tcl_ring_retry = true,
  		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
  		.smp2p_wow_exit = false,
@@ -54,7 +52,7 @@ index 0ab2f190f1ec..edf78df9b12f 100644
  	},
  	{
  		.name = "qcn9074 hw1.0",
-@@ -356,6 +358,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+@@ -356,6 +358,7 @@ static const struct ath11k_hw_params ath
  		.tcl_ring_retry = true,
  		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
  		.smp2p_wow_exit = false,
@@ -62,7 +60,7 @@ index 0ab2f190f1ec..edf78df9b12f 100644
  	},
  	{
  		.name = "wcn6855 hw2.0",
-@@ -438,6 +441,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+@@ -438,6 +441,7 @@ static const struct ath11k_hw_params ath
  		.tcl_ring_retry = true,
  		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
  		.smp2p_wow_exit = false,
@@ -70,7 +68,7 @@ index 0ab2f190f1ec..edf78df9b12f 100644
  	},
  	{
  		.name = "wcn6855 hw2.1",
-@@ -519,6 +523,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+@@ -519,6 +523,7 @@ static const struct ath11k_hw_params ath
  		.tcl_ring_retry = true,
  		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
  		.smp2p_wow_exit = false,
@@ -78,7 +76,7 @@ index 0ab2f190f1ec..edf78df9b12f 100644
  	},
  	{
  		.name = "wcn6750 hw1.0",
-@@ -597,6 +602,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+@@ -597,6 +602,7 @@ static const struct ath11k_hw_params ath
  		.tcl_ring_retry = false,
  		.tx_ring_size = DP_TCL_DATA_RING_SIZE_WCN6750,
  		.smp2p_wow_exit = true,
@@ -86,8 +84,6 @@ index 0ab2f190f1ec..edf78df9b12f 100644
  	},
  };
  
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 8a3f24862edc..0c5ef8a526d8 100644
 --- a/drivers/net/wireless/ath/ath11k/hw.h
 +++ b/drivers/net/wireless/ath/ath11k/hw.h
 @@ -219,6 +219,7 @@ struct ath11k_hw_params {
@@ -98,11 +94,9 @@ index 8a3f24862edc..0c5ef8a526d8 100644
  };
  
  struct ath11k_hw_ops {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 6426a38f8961..9e923ecb0891 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -8010,6 +8010,7 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+@@ -8010,6 +8010,7 @@ ath11k_mac_op_reconfig_complete(struct i
  	struct ath11k *ar = hw->priv;
  	struct ath11k_base *ab = ar->ab;
  	int recovery_count;
@@ -110,7 +104,7 @@ index 6426a38f8961..9e923ecb0891 100644
  
  	if (reconfig_type != IEEE80211_RECONFIG_TYPE_RESTART)
  		return;
-@@ -8045,6 +8046,12 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+@@ -8045,6 +8046,12 @@ ath11k_mac_op_reconfig_complete(struct i
  				ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset success\n");
  			}
  		}
@@ -123,6 +117,3 @@ index 6426a38f8961..9e923ecb0891 100644
  	}
  
  	mutex_unlock(&ar->conf_mutex);
--- 
-2.38.1
-

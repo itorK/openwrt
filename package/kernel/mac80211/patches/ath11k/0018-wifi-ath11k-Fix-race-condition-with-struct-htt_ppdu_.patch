@@ -29,11 +29,9 @@ Link: https://lore.kernel.org/r/20221124071104.22506-1-quic_kathirve@quicinc.com
  drivers/net/wireless/ath/ath11k/dp_rx.c | 22 +++++++++++-----------
  1 file changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index c5a4c34d7749..c33e68ff707a 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1535,13 +1535,12 @@ struct htt_ppdu_stats_info *ath11k_dp_htt_get_ppdu_desc(struct ath11k *ar,
+@@ -1535,13 +1535,12 @@ struct htt_ppdu_stats_info *ath11k_dp_ht
  {
  	struct htt_ppdu_stats_info *ppdu_info;
  
@@ -50,7 +48,7 @@ index c5a4c34d7749..c33e68ff707a 100644
  		}
  
  		if (ar->ppdu_stat_list_depth > HTT_PPDU_DESC_MAX_DEPTH) {
-@@ -1553,16 +1552,13 @@ struct htt_ppdu_stats_info *ath11k_dp_htt_get_ppdu_desc(struct ath11k *ar,
+@@ -1553,16 +1552,13 @@ struct htt_ppdu_stats_info *ath11k_dp_ht
  			kfree(ppdu_info);
  		}
  	}
@@ -67,7 +65,7 @@ index c5a4c34d7749..c33e68ff707a 100644
  
  	return ppdu_info;
  }
-@@ -1586,16 +1582,17 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+@@ -1586,16 +1582,17 @@ static int ath11k_htt_pull_ppdu_stats(st
  	ar = ath11k_mac_get_ar_by_pdev_id(ab, pdev_id);
  	if (!ar) {
  		ret = -EINVAL;
@@ -87,7 +85,7 @@ index c5a4c34d7749..c33e68ff707a 100644
  	}
  
  	ppdu_info->ppdu_id = ppdu_id;
-@@ -1604,10 +1601,13 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+@@ -1604,10 +1601,13 @@ static int ath11k_htt_pull_ppdu_stats(st
  				     (void *)ppdu_info);
  	if (ret) {
  		ath11k_warn(ab, "Failed to parse tlv %d\n", ret);
@@ -103,6 +101,3 @@ index c5a4c34d7749..c33e68ff707a 100644
  	rcu_read_unlock();
  
  	return ret;
--- 
-2.38.1
-

@@ -25,11 +25,9 @@ Link: https://lore.kernel.org/r/20221014155054.11471-1-quic_nmaran@quicinc.com
  drivers/net/wireless/ath/ath11k/core.c | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 35a5de3a0a8a..0ab2f190f1ec 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1677,6 +1677,10 @@ void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
+@@ -1677,6 +1677,10 @@ void ath11k_core_pre_reconfigure_recover
  			     ath11k_mac_tx_mgmt_pending_free, ar);
  		idr_destroy(&ar->txmgmt_idr);
  		wake_up(&ar->txmgmt_empty_waitq);
@@ -40,6 +38,3 @@ index 35a5de3a0a8a..0ab2f190f1ec 100644
  	}
  
  	wake_up(&ab->wmi_ab.tx_credits_wq);
--- 
-2.38.1
-

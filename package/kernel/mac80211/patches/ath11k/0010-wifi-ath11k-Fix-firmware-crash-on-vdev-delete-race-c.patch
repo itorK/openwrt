@@ -19,11 +19,9 @@ Link: https://lore.kernel.org/r/20221011095346.3901-1-quic_ssreeela@quicinc.com
  drivers/net/wireless/ath/ath11k/mac.c | 60 +++++++++++++++++----------
  1 file changed, 37 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ce15693c1804..6d83a178a891 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6232,6 +6232,40 @@ void ath11k_mac_11d_scan_stop_all(struct ath11k_base *ab)
+@@ -6233,6 +6233,40 @@ void ath11k_mac_11d_scan_stop_all(struct
  	}
  }
  
@@ -64,7 +62,7 @@ index ce15693c1804..6d83a178a891 100644
  static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
  				       struct ieee80211_vif *vif)
  {
-@@ -6467,10 +6501,7 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+@@ -6468,10 +6502,7 @@ err_peer_del:
  	}
  
  err_vdev_del:
@@ -76,7 +74,7 @@ index ce15693c1804..6d83a178a891 100644
  	spin_lock_bh(&ar->data_lock);
  	list_del(&arvif->list);
  	spin_unlock_bh(&ar->data_lock);
-@@ -6498,7 +6529,6 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+@@ -6499,7 +6530,6 @@ static void ath11k_mac_op_remove_interfa
  	struct ath11k *ar = hw->priv;
  	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
  	struct ath11k_base *ab = ar->ab;
@@ -84,7 +82,7 @@ index ce15693c1804..6d83a178a891 100644
  	int ret;
  	int i;
  
-@@ -6519,29 +6549,13 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+@@ -6520,29 +6550,13 @@ static void ath11k_mac_op_remove_interfa
  				    arvif->vdev_id, ret);
  	}
  
@@ -116,6 +114,3 @@ index ce15693c1804..6d83a178a891 100644
  	if (arvif->vdev_type == WMI_VDEV_TYPE_MONITOR) {
  		clear_bit(ATH11K_FLAG_MONITOR_VDEV_CREATED, &ar->monitor_flags);
  		ar->monitor_vdev_id = -1;
--- 
-2.37.3
-

@@ -33,11 +33,9 @@ Link: https://lore.kernel.org/r/20220923170235.18873-1-quic_adisi@quicinc.com
  drivers/net/wireless/ath/ath11k/qmi.c  | 3 +++
  3 files changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index b99180bc8172..35a5de3a0a8a 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1641,7 +1641,7 @@ static void ath11k_update_11d(struct work_struct *work)
+@@ -1641,7 +1641,7 @@ static void ath11k_update_11d(struct wor
  	}
  }
  
@@ -46,7 +44,7 @@ index b99180bc8172..35a5de3a0a8a 100644
  {
  	struct ath11k *ar;
  	struct ath11k_pdev *pdev;
-@@ -1730,9 +1730,6 @@ static void ath11k_core_restart(struct work_struct *work)
+@@ -1730,9 +1730,6 @@ static void ath11k_core_restart(struct w
  	struct ath11k_base *ab = container_of(work, struct ath11k_base, restart_work);
  	int ret;
  
@@ -56,11 +54,9 @@ index b99180bc8172..35a5de3a0a8a 100644
  	ret = ath11k_core_reconfigure_on_crash(ab);
  	if (ret) {
  		ath11k_err(ab, "failed to reconfigure driver on crash recovery\n");
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index cf2f52cc4e30..bbcef120c8f6 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -1157,6 +1157,7 @@ int ath11k_core_check_smbios(struct ath11k_base *ab);
+@@ -1157,6 +1157,7 @@ int ath11k_core_check_smbios(struct ath1
  void ath11k_core_halt(struct ath11k *ar);
  int ath11k_core_resume(struct ath11k_base *ab);
  int ath11k_core_suspend(struct ath11k_base *ab);
@@ -68,11 +64,9 @@ index cf2f52cc4e30..bbcef120c8f6 100644
  
  const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
  						    const char *filename);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 51de2208b789..775dfb5eb1a7 100644
 --- a/drivers/net/wireless/ath/ath11k/qmi.c
 +++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -3158,6 +3158,9 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+@@ -3158,6 +3158,9 @@ static void ath11k_qmi_driver_event_work
  		case ATH11K_QMI_EVENT_SERVER_EXIT:
  			set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
  			set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
@@ -82,6 +76,3 @@ index 51de2208b789..775dfb5eb1a7 100644
  			break;
  		case ATH11K_QMI_EVENT_REQUEST_MEM:
  			ret = ath11k_qmi_event_mem_request(qmi);
--- 
-2.37.3
-

@@ -31,8 +31,6 @@ Link: https://lore.kernel.org/r/20221005095430.19890-1-quic_adisi@quicinc.com
  drivers/net/wireless/ath/ath11k/mac.c  | 122 +++++++++++++++++--------
  2 files changed, 87 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index bbcef120c8f6..22460b0abf03 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
 @@ -505,6 +505,8 @@ struct ath11k_sta {
@@ -44,11 +42,9 @@ index bbcef120c8f6..22460b0abf03 100644
  };
  
  #define ATH11K_MIN_5G_FREQ 4150
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 84d956ad4093..4b86769cab8b 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4214,10 +4214,11 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
+@@ -4215,10 +4215,11 @@ static void ath11k_sta_rc_update_wk(stru
  	const u8 *ht_mcs_mask;
  	const u16 *vht_mcs_mask;
  	const u16 *he_mcs_mask;
@@ -61,7 +57,7 @@ index 84d956ad4093..4b86769cab8b 100644
  
  	arsta = container_of(wk, struct ath11k_sta, update_wk);
  	sta = container_of((void *)arsta, struct ieee80211_sta, drv_priv);
-@@ -4238,6 +4239,7 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
+@@ -4239,6 +4240,7 @@ static void ath11k_sta_rc_update_wk(stru
  	arsta->changed = 0;
  
  	bw = arsta->bw;
@@ -69,7 +65,7 @@ index 84d956ad4093..4b86769cab8b 100644
  	nss = arsta->nss;
  	smps = arsta->smps;
  
-@@ -4251,26 +4253,57 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
+@@ -4252,26 +4254,57 @@ static void ath11k_sta_rc_update_wk(stru
  			   ath11k_mac_max_he_nss(he_mcs_mask)));
  
  	if (changed & IEEE80211_RC_BW_CHANGED) {
@@ -78,13 +74,6 @@ index 84d956ad4093..4b86769cab8b 100644
 -		 * bandwidth.
 -		 */
 -		ath11k_peer_assoc_prepare(ar, arvif->vif, sta, &peer_arg, true);
--
--		peer_arg.is_assoc = false;
--		err = ath11k_wmi_send_peer_assoc_cmd(ar, &peer_arg);
--		if (err) {
--			ath11k_warn(ar->ab, "failed to send peer assoc for STA %pM vdev %i: %d\n",
--				    sta->addr, arvif->vdev_id, err);
--		} else if (wait_for_completion_timeout(&ar->peer_assoc_done, 1 * HZ)) {
 +		/* Get the peer phymode */
 +		ath11k_peer_assoc_h_phymode(ar, arvif->vif, sta, &peer_arg);
 +		peer_phymode = peer_arg.peer_phymode;
@@ -107,7 +96,13 @@ index 84d956ad4093..4b86769cab8b 100644
 +					    sta->addr, peer_phymode, err);
 +				goto err_rc_bw_changed;
 +			}
-+
+ 
+-		peer_arg.is_assoc = false;
+-		err = ath11k_wmi_send_peer_assoc_cmd(ar, &peer_arg);
+-		if (err) {
+-			ath11k_warn(ar->ab, "failed to send peer assoc for STA %pM vdev %i: %d\n",
+-				    sta->addr, arvif->vdev_id, err);
+-		} else if (wait_for_completion_timeout(&ar->peer_assoc_done, 1 * HZ)) {
  			err = ath11k_wmi_set_peer_param(ar, sta->addr, arvif->vdev_id,
  							WMI_PEER_CHWIDTH, bw);
 +
@@ -141,7 +136,7 @@ index 84d956ad4093..4b86769cab8b 100644
  		}
  	}
  
-@@ -4351,6 +4384,7 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
+@@ -4352,6 +4385,7 @@ static void ath11k_sta_rc_update_wk(stru
  		}
  	}
  
@@ -149,7 +144,7 @@ index 84d956ad4093..4b86769cab8b 100644
  	mutex_unlock(&ar->conf_mutex);
  }
  
-@@ -4504,6 +4538,34 @@ static int ath11k_mac_station_add(struct ath11k *ar,
+@@ -4505,6 +4539,34 @@ exit:
  	return ret;
  }
  
@@ -184,7 +179,7 @@ index 84d956ad4093..4b86769cab8b 100644
  static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
  				   struct ieee80211_vif *vif,
  				   struct ieee80211_sta *sta,
-@@ -4589,6 +4651,12 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+@@ -4590,6 +4652,12 @@ static int ath11k_mac_op_sta_state(struc
  		if (ret)
  			ath11k_warn(ar->ab, "Failed to associate station: %pM\n",
  				    sta->addr);
@@ -197,7 +192,7 @@ index 84d956ad4093..4b86769cab8b 100644
  	} else if (old_state == IEEE80211_STA_ASSOC &&
  		   new_state == IEEE80211_STA_AUTHORIZED) {
  		spin_lock_bh(&ar->ab->base_lock);
-@@ -4712,28 +4780,8 @@ static void ath11k_mac_op_sta_rc_update(struct ieee80211_hw *hw,
+@@ -4713,28 +4781,8 @@ static void ath11k_mac_op_sta_rc_update(
  	spin_lock_bh(&ar->data_lock);
  
  	if (changed & IEEE80211_RC_BW_CHANGED) {
@@ -228,6 +223,3 @@ index 84d956ad4093..4b86769cab8b 100644
  		arsta->bw = bw;
  	}
  
--- 
-2.37.3
-

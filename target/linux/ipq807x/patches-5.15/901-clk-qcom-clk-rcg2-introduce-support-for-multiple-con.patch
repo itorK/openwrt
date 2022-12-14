@@ -31,8 +31,6 @@ Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
  drivers/clk/qcom/clk-rcg2.c | 81 ++++++++++++++++++++++++++++++++-----
  2 files changed, 85 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/clk/qcom/clk-rcg.h b/drivers/clk/qcom/clk-rcg.h
-index 01581f4d2c39..18f4f7b59f36 100644
 --- a/drivers/clk/qcom/clk-rcg.h
 +++ b/drivers/clk/qcom/clk-rcg.h
 @@ -7,7 +7,17 @@
@@ -63,12 +61,10 @@ index 01581f4d2c39..18f4f7b59f36 100644
  };
  
  /**
-diff --git a/drivers/clk/qcom/clk-rcg2.c b/drivers/clk/qcom/clk-rcg2.c
-index 76551534f10d..fc7ecb2b0ae5 100644
 --- a/drivers/clk/qcom/clk-rcg2.c
 +++ b/drivers/clk/qcom/clk-rcg2.c
-@@ -209,11 +209,59 @@ clk_rcg2_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
- 	return __clk_rcg2_recalc_rate(hw, parent_rate, cfg);
+@@ -190,11 +190,59 @@ clk_rcg2_recalc_rate(struct clk_hw *hw,
+ 	return calc_rate(parent_rate, m, n, mode, hid_div);
  }
  
 +static void
@@ -127,7 +123,7 @@ index 76551534f10d..fc7ecb2b0ae5 100644
  	struct clk_hw *p;
  	struct clk_rcg2 *rcg = to_clk_rcg2(hw);
  	int index;
-@@ -232,7 +280,14 @@ static int _freq_tbl_determine_rate(struct clk_hw *hw, const struct freq_tbl *f,
+@@ -213,7 +261,14 @@ static int _freq_tbl_determine_rate(stru
  	if (!f)
  		return -EINVAL;
  
@@ -143,7 +139,7 @@ index 76551534f10d..fc7ecb2b0ae5 100644
  	if (index < 0)
  		return index;
  
-@@ -242,18 +297,18 @@ static int _freq_tbl_determine_rate(struct clk_hw *hw, const struct freq_tbl *f,
+@@ -223,18 +278,18 @@ static int _freq_tbl_determine_rate(stru
  		return -EINVAL;
  
  	if (clk_flags & CLK_SET_RATE_PARENT) {
@@ -168,7 +164,7 @@ index 76551534f10d..fc7ecb2b0ae5 100644
  			rate = tmp;
  		}
  	} else {
-@@ -261,7 +316,7 @@ static int _freq_tbl_determine_rate(struct clk_hw *hw, const struct freq_tbl *f,
+@@ -242,7 +297,7 @@ static int _freq_tbl_determine_rate(stru
  	}
  	req->best_parent_hw = p;
  	req->best_parent_rate = rate;
@@ -177,7 +173,7 @@ index 76551534f10d..fc7ecb2b0ae5 100644
  
  	return 0;
  }
-@@ -357,6 +412,7 @@ static int __clk_rcg2_set_rate(struct clk_hw *hw, unsigned long rate,
+@@ -325,6 +380,7 @@ static int __clk_rcg2_set_rate(struct cl
  {
  	struct clk_rcg2 *rcg = to_clk_rcg2(hw);
  	const struct freq_tbl *f;
@@ -185,7 +181,7 @@ index 76551534f10d..fc7ecb2b0ae5 100644
  
  	switch (policy) {
  	case FLOOR:
-@@ -372,7 +428,14 @@ static int __clk_rcg2_set_rate(struct clk_hw *hw, unsigned long rate,
+@@ -340,7 +396,14 @@ static int __clk_rcg2_set_rate(struct cl
  	if (!f)
  		return -EINVAL;
  
@@ -201,6 +197,3 @@ index 76551534f10d..fc7ecb2b0ae5 100644
  }
  
  static int clk_rcg2_set_rate(struct clk_hw *hw, unsigned long rate,
--- 
-2.37.2
-

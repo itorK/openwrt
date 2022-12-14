@@ -431,7 +431,7 @@ Signed-off-by: Johannes Berg <johannes.berg@intel.com>
  	ieee80211_aggr_check(sdata, sta, skb);
  
  	sk_pacing_shift_update(skb->sk, sdata->local->hw.tx_sk_pacing_shift);
-@@ -4496,11 +4484,7 @@ static void ieee80211_8023_xmit(struct i
+@@ -4501,11 +4489,7 @@ static void ieee80211_8023_xmit(struct i
  	struct tid_ampdu_tx *tid_tx;
  	u8 tid;
  
@@ -444,7 +444,7 @@ Signed-off-by: Johannes Berg <johannes.berg@intel.com>
  
  	if (unlikely(test_bit(SCAN_SW_SCANNING, &local->scanning)) &&
  	    test_bit(SDATA_STATE_OFFCHANNEL, &sdata->state))
-@@ -4754,9 +4738,6 @@ void ieee80211_tx_pending(struct tasklet
+@@ -4759,9 +4743,6 @@ void ieee80211_tx_pending(struct tasklet
  			if (!txok)
  				break;
  		}
@@ -454,7 +454,7 @@ Signed-off-by: Johannes Berg <johannes.berg@intel.com>
  	}
  	spin_unlock_irqrestore(&local->queue_stop_reason_lock, flags);
  
-@@ -5949,10 +5930,9 @@ int ieee80211_tx_control_port(struct wip
+@@ -5954,10 +5935,9 @@ int ieee80211_tx_control_port(struct wip
  	}
  
  	if (!IS_ERR(sta)) {

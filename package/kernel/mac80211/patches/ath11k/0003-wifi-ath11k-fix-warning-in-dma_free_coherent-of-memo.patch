@@ -111,11 +111,9 @@ Link: https://lore.kernel.org/r/20220928073832.16251-1-quic_wgong@quicinc.com
  drivers/net/wireless/ath/ath11k/qmi.c | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 775dfb5eb1a7..84e3abecbdac 100644
 --- a/drivers/net/wireless/ath/ath11k/qmi.c
 +++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1961,7 +1961,7 @@ static void ath11k_qmi_free_target_mem_chunk(struct ath11k_base *ab)
+@@ -1961,7 +1961,7 @@ static void ath11k_qmi_free_target_mem_c
  			continue;
  
  		dma_free_coherent(ab->dev,
@@ -124,7 +122,7 @@ index 775dfb5eb1a7..84e3abecbdac 100644
  				  ab->qmi.target_mem[i].vaddr,
  				  ab->qmi.target_mem[i].paddr);
  		ab->qmi.target_mem[i].vaddr = NULL;
-@@ -1982,12 +1982,12 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
+@@ -1982,12 +1982,12 @@ static int ath11k_qmi_alloc_target_mem_c
  		 * in such case, no need to allocate memory for FW again.
  		 */
  		if (chunk->vaddr) {
@@ -139,6 +137,3 @@ index 775dfb5eb1a7..84e3abecbdac 100644
  					  chunk->vaddr, chunk->paddr);
  			chunk->vaddr = NULL;
  		}
--- 
-2.37.3
-

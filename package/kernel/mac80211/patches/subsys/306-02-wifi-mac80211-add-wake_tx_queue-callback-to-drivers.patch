@@ -166,7 +166,7 @@ Signed-off-by: Johannes Berg <johannes.berg@intel.com>
  	.add_interface		= p54_add_interface,
 --- a/drivers/net/wireless/mac80211_hwsim.c
 +++ b/drivers/net/wireless/mac80211_hwsim.c
-@@ -3104,6 +3104,7 @@ static int mac80211_hwsim_change_sta_lin
+@@ -3109,6 +3109,7 @@ static int mac80211_hwsim_change_sta_lin
  
  #define HWSIM_COMMON_OPS					\
  	.tx = mac80211_hwsim_tx,				\

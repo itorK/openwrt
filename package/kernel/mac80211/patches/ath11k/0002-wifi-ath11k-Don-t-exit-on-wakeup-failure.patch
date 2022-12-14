@@ -21,11 +21,9 @@ Link: https://lore.kernel.org/r/20220928015140.5431-1-quic_bqiang@quicinc.com
  drivers/net/wireless/ath/ath11k/pcic.c | 13 ++++++++++---
  1 file changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index 3fa1958f8c82..d2f0112e8df0 100644
 --- a/drivers/net/wireless/ath/ath11k/pcic.c
 +++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -218,9 +218,16 @@ int ath11k_pcic_read(struct ath11k_base *ab, void *buf, u32 start, u32 end)
+@@ -218,9 +218,16 @@ int ath11k_pcic_read(struct ath11k_base
  	if (wakeup_required && ab->pci.ops->wakeup) {
  		ret = ab->pci.ops->wakeup(ab);
  		if (ret) {
@@ -45,6 +43,3 @@ index 3fa1958f8c82..d2f0112e8df0 100644
  		}
  	}
  
--- 
-2.37.3
-
