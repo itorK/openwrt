@@ -6,8 +6,8 @@
 enabled=0
 delay=10
 hit_level=5
-temp_trig=70000
-temp_clr=65000
+temp_trig=80000
+temp_clr=75000
 
 debug=0
 
