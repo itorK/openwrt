@@ -1,4 +1,6 @@
+
 From 54e0f9aaf340377fb76acdffee9ec7372c4b70ae Mon Sep 17 00:00:00 2001
+
 From: Robert Marko <robimarko@gmail.com>
 Date: Mon, 17 Oct 2022 11:35:36 +0200
 Subject: [PATCH] backports: drop QRTR and MHI

@@ -19,6 +19,7 @@ jobs:
               run: |
                 echo "CONFIG_TARGET_ipq807x=y" > .config
                 echo "CONFIG_TARGET_ipq807x_generic=y\n" >> .config
+                echo "CONFIG_TARGET_ipq807x_generic_DEVICE_zyxel_nbg7815=y\n" >> .config
                 echo "CONFIG_TARGET_MULTI_PROFILE=y\n" >> .config
                 echo "CONFIG_TARGET_ALL_PROFILES=y\n" >> .config
                 echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y\n" >> .config
@@ -77,11 +78,11 @@ jobs:
               run: echo "NOW=$(date +%F-%H%M)" >> $GITHUB_ENV
 
             - name: Create a release
-              uses: "ncipollo/release-action@v1"
+              uses: "lauravuo/action-automatic-releases@test-changes"
               with:
-                name: "Updated prebuilt images ${{ env.NOW }}"
-                commit: "ipq807x-5.15-pr"
-                tag: "ipq807x-${{ env.NOW }}"
-                generateReleaseNotes: true
-                makeLatest: true
-                artifacts: bin/targets/ipq807x/generic/*
+                repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                prerelease: true
+                title: "Updated prebuilt images ${{ env.NOW }}"
+                automatic_release_tag: "ipq807x-${{ env.NOW }}"
+                auto_generate_release_notes: true
+                files: bin/targets/ipq807x/generic/*
