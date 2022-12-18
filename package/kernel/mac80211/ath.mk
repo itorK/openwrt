@@ -12,8 +12,7 @@ PKG_CONFIG_DEPENDS += \
 	CONFIG_ATH9K_TX99 \
 	CONFIG_ATH10K_LEDS \
 	CONFIG_ATH10K_THERMAL \
-	CONFIG_ATH11K_MEM_PROFILE_512MB \
-	CONFIG_ATH11K_MEM_PROFILE_1GB \
+	CONFIG_ATH11K_THERMAL \
 	CONFIG_ATH_USER_REGD
 
 ifdef CONFIG_PACKAGE_MAC80211_DEBUGFS
@@ -56,8 +55,7 @@ config-$(CONFIG_ATH9K_TX99) += ATH9K_TX99
 config-$(CONFIG_ATH9K_UBNTHSR) += ATH9K_UBNTHSR
 config-$(CONFIG_ATH10K_LEDS) += ATH10K_LEDS
 config-$(CONFIG_ATH10K_THERMAL) += ATH10K_THERMAL
-config-$(CONFIG_ATH11K_MEM_PROFILE_512MB) += ATH11K_MEM_PROFILE_512MB
-config-$(CONFIG_ATH11K_MEM_PROFILE_1GB) += ATH11K_MEM_PROFILE_1GB
+config-$(CONFIG_ATH11K_THERMAL) += ATH11K_THERMAL
 
 config-$(call config_package,ath9k-htc) += ATH9K_HTC
 config-$(call config_package,ath10k) += ATH10K ATH10K_PCI
@@ -324,22 +322,6 @@ define KernelPackage/ath11k/config
                depends on PACKAGE_kmod-ath11k
                default y if TARGET_ipq807x
 
-       if PACKAGE_kmod-ath11k
-
-       choice
-        prompt "ath11k memory profile"
-        default ATH11K_MEM_PROFILE_512MB
-        help
-          This allows selecting the ath11k memory size profile to be used.
-
-       config ATH11K_MEM_PROFILE_512MB
-               bool "Use limits for the 512MB memory size"
-
-       config ATH11K_MEM_PROFILE_1GB
-               bool "Use limits for the 1GB memory size"
-
-       endchoice
-       endif
 endef
 
 define KernelPackage/ath11k-ahb

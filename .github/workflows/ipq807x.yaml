@@ -4,7 +4,7 @@ on: [push]
 jobs:
     build:
         name: Prepare and build IPQ807x generic images
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
 
         steps:
             - name: Checkout
@@ -48,11 +48,14 @@ jobs:
                 make -j$(nproc) V=s || \
                 make V=s
 
+            - name: Remove packages
+              run: rm -rf bin/targets/ipq807x/generic/packages
+
             - name: TAR output
               run: tar -cvf ipq807xx-images.tar bin/targets/ipq807x/generic
 
             - name: Upload artifacts
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v3
               with:
                 name: ipq807x-images
                 path: ipq807xx-images.tar
@@ -64,7 +67,7 @@ jobs:
 
           steps:
             - name: Download the image artifacts
-              uses: actions/download-artifact@v2
+              uses: actions/download-artifact@v3
               with:
                 name: ipq807x-images
 

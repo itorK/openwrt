@@ -41,7 +41,6 @@ define Device/edgecore_eap102
 	SOC := ipq8071
 	DEVICE_PACKAGES := ipq-wifi-edgecore_eap102
 	IMAGE/factory.ubi := append-ubi | qsdk-ipq-factory-nand
-  
 endef
 TARGET_DEVICES += edgecore_eap102
 
