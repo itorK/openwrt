@@ -4,7 +4,7 @@ on: [push]
 jobs:
     build:
         name: Prepare and build IPQ807x generic images
-        runs-on: self-hosted
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
@@ -14,7 +14,6 @@ jobs:
               run: |
                 ./scripts/feeds update -a
                 ./scripts/feeds install -a
-
             - name: Generate config for IPQ807x Generic
               run: |
                 echo "CONFIG_TARGET_ipq807x=y" > .config
@@ -29,7 +28,6 @@ jobs:
                 echo "CONFIG_PACKAGE_wpad-basic-wolfssl=m\n" >> .config
                 echo "CONFIG_PACKAGE_wpad-wolfssl=y\n" >> .config
                 make defconfig
-
             - name: Download package sources
               run: make download V=s
 
@@ -37,25 +35,19 @@ jobs:
               run: |
                 make tools/install -j$(nproc) V=s || \
                 make tools/install V=s
-
             - name: Build toolchain
               run: |
                 make toolchain/install -j$(nproc) V=s || \
                 make toolchain/install V=s
-
             - name: Build target images
               run: |
                 make -j$(nproc) V=s || \
                 make V=s
-
-            - name: Remove packages
-              run: rm -rf bin/targets/ipq807x/generic/packages
-
             - name: TAR output
               run: tar -cvf ipq807xx-images.tar bin/targets/ipq807x/generic
 
             - name: Upload artifacts
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v2
               with:
                 name: ipq807x-images
                 path: ipq807xx-images.tar
@@ -67,7 +59,7 @@ jobs:
 
           steps:
             - name: Download the image artifacts
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v2
               with:
                 name: ipq807x-images
 
