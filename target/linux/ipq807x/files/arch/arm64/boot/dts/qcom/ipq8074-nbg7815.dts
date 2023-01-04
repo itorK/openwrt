@@ -17,6 +17,7 @@
 
 	aliases {
 		serial0 = &blsp1_uart5;
+		serial1 = &blsp1_uart3;
 		/* Aliases as required by u-boot to patch MAC addresses */
 		ethernet0 = &dp1;
 		ethernet1 = &dp2;
@@ -111,6 +112,10 @@
       bias-disable;
     };
   };
+};
+
+&blsp1_uart3 {
+	status = "okay";
 };
 
 &blsp1_uart5 {
