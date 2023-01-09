@@ -616,7 +616,7 @@
 			led@2 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x6>;
+				reg = <0x2>;
 				color = <LED_COLOR_ID_RED>;
 			};
 		};
@@ -630,21 +630,21 @@
 			led@3 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x2>;
+				reg = <0x3>;
 				color = <LED_COLOR_ID_GREEN>;
 			};
 
 			led@4 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x3>;
+				reg = <0x4>;
 				color = <LED_COLOR_ID_BLUE>;
 			};
 
 			led@5 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x7>;
+				reg = <0x5>;
 				color = <LED_COLOR_ID_RED>;
 			};
 		};
@@ -658,14 +658,14 @@
 			led@6 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x4>;
+				reg = <0x6>;
 				color = <LED_COLOR_ID_GREEN>;
 			};
 
 			led@7 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x5>;
+				reg = <0x7>;
 				color = <LED_COLOR_ID_BLUE>;
 			};
 
@@ -709,7 +709,7 @@
 			led@2 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x6>;
+				reg = <0x2>;
 				color = <LED_COLOR_ID_RED>;
 			};
 		};
@@ -721,21 +721,21 @@
 			led@3 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x2>;
+				reg = <0x3>;
 				color = <LED_COLOR_ID_GREEN>;
 			};
 
 			led@4 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x3>;
+				reg = <0x4>;
 				color = <LED_COLOR_ID_BLUE>;
 			};
 
 			led@5 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x7>;
+				reg = <0x5>;
 				color = <LED_COLOR_ID_RED>;
 			};
 		};
@@ -747,14 +747,14 @@
 			led@6 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x4>;
+				reg = <0x6>;
 				color = <LED_COLOR_ID_GREEN>;
 			};
 
 			led@7 {
 				led-cur = /bits/ 8 <0xDF>;
 				max-cur = /bits/ 8 <0xFF>;
-				reg = <0x5>;
+				reg = <0x7>;
 				color = <LED_COLOR_ID_BLUE>;
 			};
 
